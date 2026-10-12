@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#080c12" />
+    <meta
+      name="description"
+      content="GestureVerse 3D is a motorcycle racing game controlled by keyboard or real webcam hand gestures."
+    />
+    <title>GestureVerse 3D — Night Ride</title>
+  </head>
+  <body>
+    <main class="experience" aria-label="GestureVerse 3D motorcycle game">
+      <canvas class="scene" aria-label="Three-dimensional motorcycle racing course"></canvas>
+
+      <header class="topbar">
+        <a class="wordmark" href="#" aria-label="GestureVerse 3D">
+          <span class="wordmark__glyph" aria-hidden="true"></span>
+          <span>GESTURE<span class="wordmark__light">VERSE</span></span>
+        </a>
+        <div class="topbar__status"><span class="status-dot"></span><span>NIGHT RIDE / <span id="level-indicator">01</span></span></div>
+      </header>
+
+      <section class="hud" aria-label="Game status">
+        <div class="hud__score"><span>SCORE</span><strong id="score">00000</strong></div>
+        <div class="hud__metric"><span>COINS</span><strong id="coins">0</strong></div>
+        <div class="hud__metric"><span>WALLET</span><strong id="wallet">0</strong></div>
+        <div class="hud__controls">
+          <button id="garage-button" class="button button--small" type="button">Garage</button>
+          <button id="pause-button" class="button button--small" type="button" disabled>Pause</button>
+        </div>
+      </section>
+
+      <section class="game-panel" id="game-panel" aria-live="polite">
+        <p class="eyebrow">GESTUREVERSE 3D <span>·</span> MOTORCYCLE RACING</p>
+        <h1 id="panel-title">NIGHT<br /><span>RIDE</span></h1>
+        <p id="panel-copy">Steer around the drums and collect coins.</p>
+        <button id="start-button" class="button button--primary" type="button">Start Game</button>
+        <button id="continue-button" class="button button--primary" type="button" hidden>Continue</button>
+        <button id="panel-menu-button" class="button button--secondary" type="button" hidden>Main Menu</button>
+        <p class="keyboard-hint">HOLD A / ← &nbsp; STEER LEFT <span>·</span> HOLD D / → &nbsp; STEER RIGHT <span>·</span> P &nbsp; PAUSE</p>
+      </section>
+
+      <section class="garage-panel" id="garage-panel" aria-label="Rider garage and outfit shop" hidden>
+        <div class="garage-panel__header">
+          <div>
+            <p class="eyebrow">RIDER PROFILE</p>
+            <h2>RACE GARAGE</h2>
+          </div>
+          <button id="close-garage" class="button button--small" type="button">Close</button>
+        </div>
+        <div class="garage-panel__stats">
+          <span>WALLET <strong id="garage-wallet">0</strong></span>
+          <span>THIS RUN <strong id="garage-run-coins">0</strong></span>
+        </div>
+        <div class="garage-panel__selectors">
+          <label>RIDER AVATAR
+            <select id="avatar-select" aria-label="Rider avatar"></select>
+          </label>
+          <p id="avatar-description"></p>
+          <label>RACE LEVEL
+            <select id="level-select" aria-label="Race level"></select>
+          </label>
+        </div>
+        <h3>RIDER &amp; BIKE EQUIPMENT</h3>
+        <div class="shop-grid" id="shop-grid"></div>
+      </section>
+
+      <div class="game-notice" id="game-notice" role="status" hidden>
+        <span id="game-notice-text"></span>
+      </div>
+
+      <aside class="camera-card" aria-label="Hand gesture controls">
+        <div class="camera-card__header">
+          <span><span class="camera-dot" id="camera-dot"></span> HAND CONTROL</span>
+          <span id="camera-status" role="status">Camera off</span>
+        </div>
+        <div class="camera-preview" id="camera-preview-stage">
+          <video id="camera-preview" autoplay playsinline muted aria-label="Mirrored webcam preview"></video>
+          <canvas id="landmark-overlay" aria-hidden="true"></canvas>
+          <span id="preview-message">Camera off. Enable camera to see your hand.</span>
+        </div>
+        <label class="gesture-mode">
+          <span>INPUT</span>
+          <select id="input-mode" aria-label="Input control mode">
+            <option value="keyboard">Keyboard</option>
+            <option value="gestures">Hand Gestures</option>
+          </select>
+        </label>
+        <label class="gesture-mode">
+          <span>GESTURE MODE</span>
+          <select id="gesture-mode" aria-label="Gesture control mode">
+            <option value="palm">Palm Mode</option>
+            <option value="two-finger">Two-Finger Mode</option>
+          </select>
+        </label>
+        <p id="tracking-status" role="status">Keyboard controls are ready.</p>
+        <output id="gesture-debug" class="gesture-debug" aria-live="off">Hand: -- · X -- · Y --</output>
+        <output id="gesture-action" class="gesture-debug gesture-action" aria-live="off">Steering: straight</output>
+        <button id="recenter-button" class="button button--camera" type="button" disabled>Recenter Hand</button>
+        <button id="camera-button" class="button button--camera" type="button">Enable Camera</button>
+      </aside>
+
+      <footer class="bottombar">
+        <span>THREE.JS · MEDIAPIPE HAND LANDMARKER</span>
+        <span>REACH THE CHECKERED FINISH · STEER CLEAR OF THE DRUMS</span>
+      </footer>
+      <div class="render-error" role="alert" hidden></div>
+    </main>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
